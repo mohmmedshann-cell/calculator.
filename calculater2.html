@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My First Calculator</title>
+    <style>
+        /* CSS: THE CLOTHES (makes it look nice!) */
+        .calculator {
+            width: 300px;
+            margin: 50px auto;
+            border: 3px solid black;
+            padding: 10px;
+            border-radius: 10px;
+            background-color: #f0f0f0;
+        }
+        .screen {
+            width: 95%;
+            height: 50px;
+            font-size: 30px;
+            text-align: right;
+            margin-bottom: 10px;
+        }
+        button {
+            width: 70px;
+            height: 50px;
+            font-size: 20px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="calculator">
+        <input type="text" class="screen" id="display" disabled placeholder="0">
+        
+        <button onclick="append('7')">7</button>
+        <button onclick="append('8')">8</button>
+        <button onclick="append('9')">9</button>
+        <button onclick="append('+')">+</button>
+        <br>
+        
+        <button onclick="append('4')">4</button>
+        <button onclick="append('5')">5</button>
+        <button onclick="append('6')">6</button>
+        <button onclick="append('-')">-</button>
+        <br>
+        
+        <button onclick="append('1')">1</button>
+        <button onclick="append('2')">2</button>
+        <button onclick="append('3')">3</button>
+        <button onclick="append('*')">*</button>
+        <br>
+        
+        <button onclick="clearDisplay()">C</button>
+        <button onclick="append('0')">0</button>
+        <button onclick="calculate()">=</button>
+        <button onclick="append('/')">/</button>
+    </div>
+
+    <script>
+        // JAVASCRIPT: THE HANDS (makes it work!)
+        let currentInput = '';
+
+        function append(value) {
+            currentInput += value;
+            document.getElementById('display').value = currentInput;
+        }
+
+        function calculate() {
+            try {
+                // The 'eval' function does the math from the text!
+                let result = eval(currentInput); 
+                document.getElementById('display').value = result;
+                currentInput = result.toString();
+            } catch (error) {
+                document.getElementById('display').value = 'Error!';
+                currentInput = '';
+            }
+        }
+
+        function clearDisplay() {
+            currentInput = '';
+            document.getElementById('display').value = '';
+        }
+    </script>
+
+</body>
+</html>
